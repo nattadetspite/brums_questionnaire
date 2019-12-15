@@ -7,7 +7,7 @@
 
 import pandas
 import sys
-
+import datetime
 from PySide2.QtQml import QQmlApplicationEngine
 from PySide2.QtWidgets import QApplication
 from PySide2.QtCore import Property, QStringListModel, QObject, Signal, Slot, QThread
@@ -17,13 +17,15 @@ class Backend(QObject):
     def __init__(self, parent=None):
         QObject.__init__(self, parent)
         # create log csv
+        this_time = datetime.datetime.now
         head = pandas.DataFrame(['Time Stamp', 'Name', 'Age', 'Sex', 'Active', 'Alert', 'Angry', 'Annoyed'
                                     , 'Anxious', 'Bad tempered', 'Bitter', 'Calm', 'Cheerful', 'Composed'
                                     , 'Confused', 'Contented', 'Depressed', 'Downhearted', 'Energetic', 'Exhausted'
                                     , 'Happy', 'Lively', 'Miserable', 'Nervous', 'Panicky', 'Relaxed', 'Restful'
                                     , 'Satisfied', 'Sleepy', 'Tired', 'Uncertain', 'Unhappy', 'Worn-out', 'Worried'
                                     , 'Mixed-up', 'Muddled'
-                                    , 'Anger', 'Tension', 'Depression', 'Vigour', 'Fatigue', 'Confusion', 'Happy', 'Calmness'])
+                                    , 'Anger', 'Tension', 'Depression', 'Vigour', 'Fatigue'
+                                    , 'Confusion', 'Happy', 'Calmness'])
 
     @Slot('QVariantList')
     def receive_packed_data(self):
