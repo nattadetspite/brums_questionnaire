@@ -53,23 +53,41 @@ ApplicationWindow {
                     spacing: 40
                     anchors.centerIn: parent
                     Repeater {
+                        id: inputText
                         model: ['NAME', 'AGE']
                         RowLayout {
                             spacing: 40
+                            property string inputValue: textField.text
                             Label {
                                 text: modelData
                             }
                             TextField {
+                                id: textField
                                 placeholderText: 'Enter ' + modelData
+                                onEditingFinished: {
+                                    console.log(text)
+                                }
                             }
                         }
                     }
                     Row {
+                        id: sexId
+                        property string sexValue: ''
                         RadioButton {
                             text: 'Male'
+                            onCheckedChanged: {
+                                if (checked == true){
+                                    sexId.sexValue = text
+                                }
+                            }
                         }
                         RadioButton {
                             text: 'Female'
+                            onCheckedChanged: {
+                                if (checked == true){
+                                    sexId.sexValue = text
+                                }
+                            }
                         }
                     }
                 }
@@ -283,14 +301,35 @@ ApplicationWindow {
                 Column {
                     anchors.centerIn: parent
                     spacing: 20
+
                     Text {
                         text: qsTr('Thanks for participating in our research')
                         font.pointSize: 16
                     }
                     Button {
+                        function packed_data(dataId, data_packed){
+                            for(var i = 0; i < 8; i++) {
+                                console.log(dataId, i)
+                                console.log(dataId.itemAt(i).sliderValue)
+                                data_packed.push(dataId.itemAt(i).sliderValue)
+                            }
+                            return data_packed
+                        }
                         text: qsTr('SUBMIT')
                         highlighted: true
                         width: 400
+                        onClicked: {
+                            let data_packed = []
+                            data_packed.push(inputText.itemAt(0).inputValue)
+                            data_packed.push(inputText.itemAt(1).inputValue)
+                            data_packed.push(sexId.sexValue)
+                            data_packed = packed_data(groupA, data_packed)
+                            data_packed = packed_data(groupB, data_packed)
+                            data_packed = packed_data(groupC, data_packed)
+                            data_packed = packed_data(groupD, data_packed)
+                            console.log(data_packed)
+                            backend.receive_packed_data(data_packed)
+                        }
                     }
                 }
             }

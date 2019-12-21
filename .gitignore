@@ -1,6 +1,6 @@
 .idea
 .csv
-
+logs
 ./pycache
 
 .png
