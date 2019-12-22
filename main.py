@@ -28,13 +28,13 @@ class Backend(QObject):
         print(self.file_name)
         # self.this_time = this_time.strftime('%c')
         head = pandas.DataFrame(columns=['Time Stamp', 'Name', 'Age', 'Sex', 'Active', 'Alert', 'Angry', 'Annoyed'
-                                , 'Anxious', 'Bad tempered', 'Bitter', 'Calm', 'Cheerful', 'Composed'
-                                , 'Confused', 'Contented', 'Depressed', 'Downhearted', 'Energetic', 'Exhausted'
-                                , 'Happy_', 'Lively', 'Miserable', 'Nervous', 'Panicky', 'Relaxed', 'Restful'
-                                , 'Satisfied', 'Sleepy', 'Tired', 'Uncertain', 'Unhappy', 'Worn-out', 'Worried'
-                                , 'Mixed-up', 'Muddled'
-                                , 'Anger', 'Tension', 'Depression', 'Vigour', 'Fatigue'
-                                , 'Confusion', 'Happy', 'Calmness'])
+            , 'Anxious', 'Bad tempered', 'Bitter', 'Calm', 'Cheerful', 'Composed'
+            , 'Confused', 'Contented', 'Depressed', 'Downhearted', 'Energetic', 'Exhausted'
+            , 'Happy_', 'Lively', 'Miserable', 'Nervous', 'Panicky', 'Relaxed', 'Restful'
+            , 'Satisfied', 'Sleepy', 'Tired', 'Uncertain', 'Unhappy', 'Worn-out', 'Worried'
+            , 'Mixed-up', 'Muddled'
+            , 'Anger', 'Tension', 'Depression', 'Vigour', 'Fatigue'
+            , 'Confusion', 'Happy', 'Calmness'])
 
         self.HOME = os.path.realpath('')
         self.LOGS = os.path.join(self.HOME, 'logs')
@@ -73,21 +73,29 @@ class Backend(QObject):
         data_csv = pandas.read_csv('./logs/' + self.file_name)
         print(data_csv)
         data_csv = data_csv.append({'Time Stamp': this_time, 'Name': packed_data[0], 'Age': packed_data[1]
-                                    , 'Sex': packed_data[2], 'Active': packed_data[3], 'Alert': packed_data[4]
-                                    , 'Angry': packed_data[5], 'Annoyed': packed_data[6], 'Anxious': packed_data[7]
-                                    , 'Bad tempered': packed_data[8], 'Bitter': packed_data[9], 'Calm': packed_data[10]
-                                    , 'Cheerful': packed_data[11], 'Composed': packed_data[12], 'Confused': packed_data[13]
-                                    , 'Contented': packed_data[14], 'Depressed': packed_data[15]
-                                    , 'Downhearted': packed_data[16] , 'Energetic': packed_data[17]
-                                    , 'Exhausted': packed_data[18], 'Happy_': packed_data[19]
-                                    , 'Lively': packed_data[20], 'Miserable': packed_data[21], 'Nervous': packed_data[22]
-                                    , 'Panicky': packed_data[23], 'Relaxed': packed_data[24], 'Restful': packed_data[25]
-                                    , 'Satisfied': packed_data[26], 'Sleepy': packed_data[27], 'Tired': packed_data[28]
-                                    , 'Uncertain': packed_data[29], 'Unhappy': packed_data[30], 'Worn-out': packed_data[31]
-                                    , 'Worried': packed_data[32], 'Mixed-up': packed_data[33], 'Muddled': packed_data[34]
-                                    , 'Anger': anger, 'Tension': tension, 'Depression': depression, 'Vigour': vigour
-                                    , 'Fatigue': fatigue, 'Confusion': confusion, 'Happy': happy, 'Calmness': calmness}
-                                    , ignore_index=True)
+                                       , 'Sex': packed_data[2], 'Active': packed_data[3], 'Alert': packed_data[4]
+                                       , 'Angry': packed_data[5], 'Annoyed': packed_data[6], 'Anxious': packed_data[7]
+                                       , 'Bad tempered': packed_data[8], 'Bitter': packed_data[9],
+                                    'Calm': packed_data[10]
+                                       , 'Cheerful': packed_data[11], 'Composed': packed_data[12],
+                                    'Confused': packed_data[13]
+                                       , 'Contented': packed_data[14], 'Depressed': packed_data[15]
+                                       , 'Downhearted': packed_data[16], 'Energetic': packed_data[17]
+                                       , 'Exhausted': packed_data[18], 'Happy_': packed_data[19]
+                                       , 'Lively': packed_data[20], 'Miserable': packed_data[21],
+                                    'Nervous': packed_data[22]
+                                       , 'Panicky': packed_data[23], 'Relaxed': packed_data[24],
+                                    'Restful': packed_data[25]
+                                       , 'Satisfied': packed_data[26], 'Sleepy': packed_data[27],
+                                    'Tired': packed_data[28]
+                                       , 'Uncertain': packed_data[29], 'Unhappy': packed_data[30],
+                                    'Worn-out': packed_data[31]
+                                       , 'Worried': packed_data[32], 'Mixed-up': packed_data[33],
+                                    'Muddled': packed_data[34]
+                                       , 'Anger': anger, 'Tension': tension, 'Depression': depression, 'Vigour': vigour
+                                       , 'Fatigue': fatigue, 'Confusion': confusion, 'Happy': happy,
+                                    'Calmness': calmness}
+                                   , ignore_index=True)
         data_csv.to_csv('./logs/' + self.file_name, index=False)
         print(packed_data)
         print('submit')
