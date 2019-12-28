@@ -90,6 +90,34 @@ ApplicationWindow {
                             }
                         }
                     }
+                    Row {
+                        id: itemId
+                        property string itemSelected: ''
+                        RadioButton {
+                            text: 'A'
+                            onCheckedChanged: {
+                                if (checked == true) {
+                                    itemId.itemSelected = text
+                                }
+                            }
+                        }
+                        RadioButton {
+                            text: 'B'
+                            onCheckedChanged: {
+                                if (checked == true) {
+                                    itemId.itemSelected = text
+                                }
+                            }
+                        }
+                        RadioButton {
+                            text: 'C'
+                            onCheckedChanged: {
+                                if (checked == true) {
+                                    itemId.itemSelected = text
+                                }
+                            }
+                        }
+                    }
                 }
             }
 
@@ -317,6 +345,7 @@ ApplicationWindow {
                         }
                         text: qsTr('SUBMIT')
                         highlighted: true
+                        Material.accent: Material.Orange
                         width: 400
                         onClicked: {
                             let data_packed = []
@@ -327,8 +356,18 @@ ApplicationWindow {
                             data_packed = packed_data(groupB, data_packed)
                             data_packed = packed_data(groupC, data_packed)
                             data_packed = packed_data(groupD, data_packed)
+                            data_packed.push(itemId.itemSelected)
                             console.log(data_packed)
                             backend.receive_packed_data(data_packed)
+
+                            view.currentIndex = 0
+                        }
+                    }
+                    Button {
+                        text: qsTr('EXIT')
+                        highlighted: true
+                        onClicked: {
+                            Qt.quit()
                         }
                     }
                 }

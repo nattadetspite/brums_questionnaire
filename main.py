@@ -34,7 +34,7 @@ class Backend(QObject):
             , 'Satisfied', 'Sleepy', 'Tired', 'Uncertain', 'Unhappy', 'Worn-out', 'Worried'
             , 'Mixed-up', 'Muddled'
             , 'Anger', 'Tension', 'Depression', 'Vigour', 'Fatigue'
-            , 'Confusion', 'Happy', 'Calmness'])
+            , 'Confusion', 'Happy', 'Calmness', 'Item Selected'])
 
         self.HOME = os.path.realpath('')
         self.LOGS = os.path.join(self.HOME, 'logs')
@@ -94,7 +94,7 @@ class Backend(QObject):
                                     'Muddled': packed_data[34]
                                        , 'Anger': anger, 'Tension': tension, 'Depression': depression, 'Vigour': vigour
                                        , 'Fatigue': fatigue, 'Confusion': confusion, 'Happy': happy,
-                                    'Calmness': calmness}
+                                    'Calmness': calmness, 'Item Selected': packed_data[35]}
                                    , ignore_index=True)
         data_csv.to_csv('./logs/' + self.file_name, index=False)
         print(packed_data)
